@@ -22,4 +22,69 @@
     技巧一：用两个翼兵来麻痹骑士
 
 - p: |
-    我们从用翼兵限制骑士这一常见的主题开始讨论。
+    我们从用翼兵限制骑士这一常见的主题开始讨论：\sympawn g3/
+    \sympawn h4 对 \symknight g6 是很多情况下的
+    主要冲突。此时对手通常面临两难抉择：用车前兵（...h5 或 ...a5 ）会制造
+    出弱点，或车前兵无法应对。放任走出 h4-h5 或 a4-a5 会使他在空间上处于
+    不利地位，在此后的对局中骑士都无法找到一个合适的位置。
+
+- h4:
+    Botvinnik-Boleslavsky
+
+- p: |
+    {\small Moscow (USSR Ch) 1941}
+
+- chessboard:
+    setfen=5rk1/3r1ppp/1pq3n1/p2p4/P2P4/2PNRQ2/1P4PP/4R1K1 w - - 1 1
+
+- p: |
+    最后一步走棋是 24...\symqueen d6-c6。
+
+- blockquote:
+    “黑方想要把对方的一个棋子限制在保护 \sympawn a4 的位置上。在
+    这种情况下，白方主动权的发展速度将会放缓。但是白色方有一个明确的进攻计划：
+    把 \symknight g6 逼走以便他的城堡可以走到 e7、骑士可以走到
+    e5 或 f4。出于这样的原因，白方无视了对方的威胁。”（Botvinnik）
+
+- p: |
+    \textbf{25.g3! \symrook d6}\\
+    接下来的发展 \textbf{25... \symqueen xa4 26.h4} 对黑色方来
+    说是极度危险的，例如 \textbf{26...\symrook d6}（或者根据
+    白方 Botvinnik 实际的进攻走棋 26...\symrook fd8 27.h5 
+    \symknight f8 28.h6） \textbf{27.h5} \symknight h8 
+    28.\symknight f4\wupperhand。
+
+    \textbf{26.h4! f6}\\
+    由此控制了 e5 格子。
+
+    \textbf{27.\symqueen f5! \symqueen c8}\\
+    考虑到以下着法，\textbf{27...\symqueen xa4}是很不好的一步：
+    \textbf{28.h5 \symknight h8 29.\symknight f4}，后续的发展
+    可以为 \textbf{29...\symknight f7} 30.\symknight e6! 
+    \symrook b8 31.\symqueen g4 \symknight g5 32.\symknight xg5 
+    fxg5 33.\symrook e7 h6 34.\symqueen f5\wdecisive 或者
+    \textbf{29...\symqueen d7} 30.\symqueen xd7 \symrook xd7 31.
+    \symrook e7 \symrook xe7 32.\symrook xe7 \symknight f7 33.
+    \symknight xd5\wdecisive。
+
+    \textbf{28.\symqueen xc8 \symrook xc8 29.h5 \symknight f8
+    30.\symrook e7 \symrook cd8}\\
+    30...\symrook c4 31.\symrook b7 \symrook xa4 32.\symrook ee7
+    \wdecisive。
+
+    \textbf{31.\symrook f4\wupperhand}\\
+    随后白方在第 49 手获胜。
+
+- h4:
+    Tamburini-Botvinnik
+
+- p: |
+    {\small Leipzig (Olympiad) 1960}
+
+- chessboard:
+    setfen=2bqr1kb/r4n1p/pp1p1np1/2pP1p2/2P5/2N1BPN1/PP1QB1PP/1R1R2K1 w - - 0 1
+
+- p: |
+    在进一步分析这场对局之前，请先注意黑方的后车，它能够在一步之内移动到 e 线，
+    我们将在技巧32——提车法 \footnote{译注：原文为\textit{The rook lift}，
+    是一种把车提到兵前使之发挥作用的策略。}里进一步讨论这一思路。

@@ -275,5 +275,6 @@ TSWLatexianTemp*
 # Makeindex log files
 *.lpz
 
-# Build dist directory
+# Customize build dist directory and targets
 dist/
+book.pdf

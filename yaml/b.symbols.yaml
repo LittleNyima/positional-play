@@ -1,0 +1,52 @@
+# ----------------------------------------------------------------------------
+# Title: 局面型弈法精要——45种国际象棋实用制胜手段
+# Author: LittleNyima
+# License: MIT License
+# ----------------------------------------------------------------------------
+
+- h2:
+    符号表
+  _unnumbered:
+    True
+
+- raw:
+    \begin{align*}
+  _lang:
+    latex
+
+- backspace:
+    1
+
+- p: |
+    \wdecisive\qquad & \qquad\text{白方有获胜优势}\\
+    \wupperhand\qquad & \qquad\text{白方有显著优势}\\
+    \wbetter\qquad & \qquad\text{白方略有优势}\\
+    \equal\qquad & \qquad\text{双方均势}\\
+    \unclear\qquad & \qquad\text{局势不明朗}\\
+    \bbetter\qquad & \qquad\text{黑方略有优势}\\
+    \bupperhand\qquad & \qquad\text{黑方有显著优势}\\
+    \bdecisive\qquad & \qquad\text{黑方有获胜优势}\\
+    \compensation\qquad & \qquad\text{补偿}\\
+    \counterplay\qquad & \qquad\text{对抗}\\
+    \devadvantage\qquad & \qquad\text{发展（威胁）}\\
+    \weakpt\qquad & \qquad\text{弱点}\\
+    \mate\qquad & \qquad\text{将杀}\\
+    !!\qquad & \qquad\text{妙招}\\
+    !\qquad & \qquad\text{好招}\\
+    !?\qquad & \qquad\text{有趣的着法}\\
+    ?!\qquad & \qquad\text{可疑的着法}\\
+    ?\qquad & \qquad\text{坏棋}\\
+    ??\qquad & \qquad\text{劣着}\\
+    \text{Ch}\qquad & \qquad\text{冠军}\\
+    \square\qquad & \qquad\text{轮到白棋走}\\
+    \blacksquare\qquad & \qquad\text{轮到黑棋走}\\
+    \Rightarrow\qquad & \qquad\text{导致}
+
+- backspace:
+    2
+
+- raw: |
+    \end{align*}
+    \clearpage
+  _lang:
+    latex

@@ -33,13 +33,41 @@ def strip_ext(filename):
 
 
 # --- Writers ----------------------------------------------------------------
+class DeletableStream:
+    def __init__(self, file, mode, encoding):
+        self.stream = open(file=file, mode=mode, encoding=encoding)
+        self.buffer = []
+    
+    def write(self, s):
+        self.buffer.append(s)
+    
+    def flush(self):
+        self.stream.write("".join(self.buffer))
+        self.buffer.clear()
+    
+    def close(self):
+        self.flush()
+        self.stream.close()
+    
+    def backspace(self, n):
+        while self.buffer and n > 0:
+            if len(self.buffer[-1]) <= n:
+                item = self.buffer.pop()
+                n -= len(item)
+            else:
+                self.buffer[-1] = self.buffer[-1][:-n]
+    
+    @property
+    def closed(self):
+        return self.stream.closed
+
+
 class AbstractWriter(metaclass=ABCMeta):
     def __init__(self, target):
         self.target = target
-        self.stream = None
+        self.stream = DeletableStream(self.target, 'w', encoding='utf-8')
 
     def __enter__(self):
-        self.stream = open(self.target, 'w', encoding='utf-8')
         return self
 
     def __exit__(self, *_):
@@ -47,46 +75,61 @@ class AbstractWriter(metaclass=ABCMeta):
             self.stream.close()
 
     def write(self, k, v, **kwargs):
-        write_fn = self.__getattribute__(k)
-        write_fn(v, **kwargs)
+        if hasattr(self, k):
+            write_fn = self.__getattribute__(k)
+            write_fn(v, **kwargs)
 
     def new_line(self):
         self.stream.write('\n\n')
 
 
 class LatexWriter(AbstractWriter):
+    def backspace(self, n):
+        self.stream.backspace(n)
+
     def blockquote(self, content):
         s = f'\\begin{{quote}}\n{content}\n\\end{{quote}}'
         self.stream.write(s)
         self.new_line()
 
-    def h1(self, content):
-        s = f'\\chapter{{{content}}}'
+    def chessboard(self, content):
+        s = f'''\\chessboard[{content}]'''
         self.stream.write(s)
         self.new_line()
 
-    def h2(self, content):
-        s = f'\\section{{{content}}}'
+    def h1(self, content, unnumbered=False):
+        asterisk = '*' if unnumbered else ''
+        s = f'\\chapter{asterisk}{{{content}}}'
         self.stream.write(s)
         self.new_line()
 
-    def h3(self, content):
-        s = f'\\subsection{{{content}}}'
+    def h2(self, content, unnumbered=False):
+        asterisk = '*' if unnumbered else ''
+        s = f'\\section{asterisk}{{{content}}}'
         self.stream.write(s)
         self.new_line()
 
-    def h4(self, content):
-        s = f'\\subsubsection{{{content}}}'
+    def h3(self, content, unnumbered=False):
+        asterisk = '*' if unnumbered else ''
+        s = f'\\subsection{asterisk}{{{content}}}'
         self.stream.write(s)
         self.new_line()
 
-    def h5(self, content):
-        s = f'\\paragraph{{{content}}}'
+    def h4(self, content, unnumbered=False):
+        asterisk = '*' if unnumbered else ''
+        s = f'\\subsubsection{asterisk}{{{content}}}'
         self.stream.write(s)
         self.new_line()
 
-    def h6(self, content):
-        s = f'\\subparagraph{{{content}}}'
+    def h5(self, content, unnumbered=False):
+        asterisk = '*' if unnumbered else ''
+        s = f'\\paragraph{asterisk}{{{content}}}'
+        self.stream.write(s)
+        self.new_line()
+
+    def h6(self, content, unnumbered=False):
+        asterisk = '*' if unnumbered else ''
+        s = f'\\subparagraph{asterisk}{{{content}}}'
         self.stream.write(s)
         self.new_line()
 
@@ -98,6 +141,11 @@ class LatexWriter(AbstractWriter):
     def p(self, content):
         self.stream.write(content)
         self.new_line()
+    
+    def raw(self, content, lang='any'):
+        if lang in ['any', 'latex']:
+            self.stream.write(content)
+            self.new_line()
 
 
 class HtmlWriter(AbstractWriter):

@@ -5,14 +5,34 @@
 \usepackage[a5paper,includeheadfoot]{geometry}
 \geometry{right=15mm, left=20mm, top=15mm, bottom=15mm}
 
+% % ref: https://tex.stackexchange.com/questions/149757/new-chapter-top-margin-is-large
+% \usepackage{etoolbox}% http://ctan.org/pkg/etoolbox
+% \makeatletter
+% % \patchcmd{<cmd>}{<search>}{<replace>}{<success>}{<failure>}
+% % --- Patch \chapter
+% \patchcmd{\@makechapterhead}{50\p@}{\chapheadtopskip}{}{}% Space from top of page to CHAPTER X
+% \patchcmd{\@makechapterhead}{20\p@}{\chapheadsep}{}{}% Space between CHAPTER X and CHAPTER TITLE
+% \patchcmd{\@makechapterhead}{40\p@}{\chapheadbelowskip}{}{}% Space between CHAPTER TITLE and text
+% % --- Patch \chapter*
+% \patchcmd{\@makeschapterhead}{50\p@}{\chapheadtopskip}{}{}% Space from top of page to CHAPTER TITLE
+% \patchcmd{\@makeschapterhead}{40\p@}{\chapheadbelowskip}{}{}% SPace between CHAPTER TITLE and text
+% \makeatother
+% % --- Set new lengths
+% \newlength{\chapheadtopskip}\setlength{\chapheadtopskip}{10pt}
+% \newlength{\chapheadsep}\setlength{\chapheadsep}{10pt}
+% \newlength{\chapheadbelowskip}\setlength{\chapheadbelowskip}{20pt}
+
 
 % --- Locale -----------------------------------------------------------------
 \usepackage[UTF8]{ctex}
 
 
 % --- Utilities --------------------------------------------------------------
-\usepackage{skak}
-\usepackage{scalerel}
+\usepackage{adjustbox}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{xskak}
 
 
 \begin{document}

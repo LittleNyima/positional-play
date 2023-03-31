@@ -1,14 +1,15 @@
 TEX_SRC   := tex
 YML_SRC   := yaml
 YML_FILES := $(wildcard ${YML_SRC}/*.yaml)
+TEX_FILES := $(wildcard $(TEX_SRC)/*.tex)
 DIST      := dist
 TEX_DIST  := ${DIST}/latex
-TEX_DISTS := ${TEX_DIST}/a.toplevel.tex \
-	${TEX_DIST}/c.chapter-1.tex
+TEX_DISTS := $(foreach yml,$(YML_FILES),\
+	$(patsubst yaml/%.yaml,${TEX_DIST}/%.tex,$(yml)))
 
 
 .PHONY: all
-all: directories pdf
+all: clean directories pdf
 
 
 .PHONY: directories
@@ -20,9 +21,9 @@ directories:
 .PHONY: pdf
 pdf: ${TEX_DISTS}
 	@cp tex/*.tex ${TEX_DIST}
-	@latexmk -pdfxe -cd -bibtex -shell-escape -silent -jobname="book" \
+	@latexmk -pdfxe -cd -bibtex -shell-escape -jobname="book" \
 			 -pretex="" -use-make -usepretex $(TEX_DIST)/a.book.tex
-	@mv ${TEX_DIST}/book.pdf ${DIST}
+	@mv -v ${TEX_DIST}/book.pdf .
 
 
 ${TEX_DIST}/%.tex: ${YML_SRC}/%.yaml
@@ -35,3 +36,4 @@ ${TEX_DIST}/%.tex: ${YML_SRC}/%.yaml
 .PHONY: clean
 clean:
 	@rm -rf ${DIST}
+	@rm -f book.pdf
